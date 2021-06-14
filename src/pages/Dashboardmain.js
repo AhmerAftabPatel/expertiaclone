@@ -8,16 +8,21 @@ import {
   Header,
   Button,
   Menu,
-  Icon
+  Image,
+  Icon,
+  List
 } from "semantic-ui-react";
+import SampleChart from "../components/Chart";
 import PageHeader from "../components/PageHeader";
 import Base from "../Core/Base";
+import DummyUrl from "../assets/Dummy.png";
 /**
  * @author
  * @function DashboardMain
  **/
 
 const DashboardMain = props => {
+  const [graph, showGraph] = useState(false);
   const [activeItem, setMenu] = useState("Product");
   const cards = [
     { value1: "Created", value2: "60" },
@@ -106,6 +111,7 @@ const DashboardMain = props => {
                                 color: "#FFFFFF",
                                 fontSize: "12px"
                               }}
+                              onClick={() => showGraph(true)}
                             >
                               Details
                             </Button>
@@ -139,6 +145,25 @@ const DashboardMain = props => {
           </Card>
         </Card.Group>
       </Container>
+    </>
+  );
+  const ListMain = (
+    <>
+      <List divided relaxed>
+        <List.Item
+          style={{
+            boxShadow: "rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px", padding : "15px",
+            borderRadius : '7px'
+          }}
+        >
+          <Image src={DummyUrl} size="mini" circular verticalAlign="middle" />
+          <List.Content>
+            <List.Header as="a">Ahmer Aftab</List.Header>
+            <List.Description as="a">13 years experience</List.Description>
+          </List.Content>
+        </List.Item>
+      </List>
+      <SampleChart />
     </>
   );
 
@@ -175,7 +200,9 @@ const DashboardMain = props => {
           </Menu.Menu>
         </Menu>
 
-        <Container style={{ padding: "15px" }}>{Tab1Content}</Container>
+        <Container style={{ padding: "15px" }}>
+          {graph ? ListMain : Tab1Content}
+        </Container>
       </div>
     </>
   );

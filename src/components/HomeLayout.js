@@ -17,6 +17,7 @@ import {
   Modal,
   Visibility
 } from "semantic-ui-react";
+import SampleChart from "./Chart";
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -59,6 +60,7 @@ const HomepageHeading = ({ mobile }) => (
         </Container>
       </Grid.Column>
       <Grid.Column>
+        {/* <SampleChart/> */}
         <Image
           size="large"
           style={{ textAlign: "center", margin: "auto" }}

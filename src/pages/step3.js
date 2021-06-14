@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   Container,
@@ -8,6 +8,7 @@ import {
   Grid,
   Button,
   Image,
+  Dimmer, Loader,
   Message
 } from "semantic-ui-react";
 import imageUrl from "../assets/devs.jpg";
@@ -20,8 +21,9 @@ import GoogleLogin from "react-google-login";
 const Step3 = props => {
   const [user, setUser] = useState("");
   const responseGoogle = response => {
-    const { googleId, name, email, imageUrl } = response.profileObj;
     console.log("if", response);
+    const { googleId, name, email, imageUrl } = response.profileObj;
+    
     const user = {
       password: googleId,
       name: name,
@@ -29,32 +31,24 @@ const Step3 = props => {
       photo: imageUrl
     };
     console.log("user obj to social login: ", user);
-    setUser(user);
+    
+    if(user){
+      setUser(true);
+    }
   };
   const PositiveMessage = (
     <>
-      {user && (
-        <Message
-          positive
-          icon
-          style={{ display: user ? "" : "none", marginBottom: "100px" }}
-        >
-          <Image size="mini" src={user.photo} />
-          <Message.Header>&nbsp; Awesome! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</Message.Header>
-
-          <p>
-          {user.name} Your <b> email is </b> {user.email}.
-            <br />
-            you are now signed in to expertia
-          </p>
-        </Message>
-      )}
+    <Dimmer active>
+         <Loader/>
+         </Dimmer>
     </>
   );
+
   const LeftSide = (
     <>
       <Container textAlign="center" style={{ margin: "15px", float: "left" }}>
-        {!user ? <Image size="large" src={imageUrl}></Image> : PositiveMessage}
+        <Image size="large" src={imageUrl}></Image>
+        {user && PositiveMessage}
         <Container>
           <Header as="h1" style={{ fontWeight: "bold" }}>
             Awesome!
@@ -104,7 +98,7 @@ const Step3 = props => {
             </Grid.Column>
             <Grid.Column>
               <GoogleLogin
-                clientId="389504607319-q7akb3vjg4eefv764kqqc5ntts7bc2ij.apps.googleusercontent.com"
+                clientId="389504607319-cfjg2ahq79dio82c906f7l7a7ldi32pl.apps.googleusercontent.com"
                 render={renderProps => (
                   <>
                     <Icon
@@ -112,7 +106,7 @@ const Step3 = props => {
                       disabled={renderProps.disabled}
                       name="google"
                       size="big"
-                      style={{ borderRadius: "15px" }}
+                      style={{ borderRadius: "15px" ,cursor : "pointer"}}
                     />
                     <br />
                     <span>Google</span>
@@ -128,6 +122,16 @@ const Step3 = props => {
       </Container>
     </>
   );
+  const redirectingDemo =() => {
+    setUser(true);
+      props.history.push(`/dashboard/main`)
+  }
+
+  useEffect(() => {
+    if(user){
+      props.history.push(`/dashboard/main`)
+    }
+  },[user])
   return (
     <>
       <>
@@ -234,6 +238,7 @@ const Step3 = props => {
                         borderRadius: "25px",
                         width: "150px"
                       }}
+                      onClick ={() => redirectingDemo()}
                     >
                       Agree & Sign Up
                     </Button>

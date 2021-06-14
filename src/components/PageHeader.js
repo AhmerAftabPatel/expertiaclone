@@ -1,47 +1,63 @@
-import React, { Fragment, useState } from 'react'
-import { Input, Menu } from 'semantic-ui-react'
+import React, { Fragment, useState } from "react";
+import { Input, Menu, Divider, Button, Image } from "semantic-ui-react";
+import DummyUrl from "../assets/Dummy.png";
 /**
-* @author
-* @function PageHeader
-**/
+ * @author
+ * @function PageHeader
+ **/
 
-const PageHeader = (props) => {
-  const [activeItem,setActiveItem] = useState("home")
+const PageHeader = props => {
+  const [activeItem, setActiveItem] = useState("home");
 
-
-  const handleItemClick = () => (e, { name }) => setActiveItem(name)
-  return(
+  const handleItemClick =
+    () =>
+    (e, { name }) =>
+      setActiveItem(name);
+  return (
     <Fragment>
-        <Menu secondary>
-        <Menu.Item
-          name='home'
-          active={activeItem === 'home'}
-          onClick={handleItemClick}
-        />
-        <Menu.Item
-          name='messages'
-          active={activeItem === 'messages'}
-          onClick={handleItemClick}
-        />
-        <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
-          onClick={handleItemClick}
-        />
-        <Menu.Menu position='right'>
+      <Menu secondary style={{ top: "0px", right: "0px" }}>
+        <Menu.Item>
+          <Image
+            src={DummyUrl}
+            size="mini"
+            style={{ borderRadius: "15px" }}
+          ></Image>
+          &nbsp; Paytm - One97 Communications
+        </Menu.Item>
+        <Menu.Menu position="right">
           <Menu.Item>
-            <Input icon='search' placeholder='Search...' />
+            <Button
+              style={{
+                borderRadius: "20px",
+                width: "150px",
+                background: "blue",
+                color: "#FFFFFF"
+              }}
+            >
+              + &nbsp; Create
+            </Button>
           </Menu.Item>
-          <Menu.Item
-            name='logout'
-            active={activeItem === 'logout'}
-            onClick={handleItemClick}
-          />
+          <Divider />
+          <div
+            class="vl"
+            style={{
+              borderLeft: "2px solid grey",
+              height: "30px",
+              margin: "auto"
+            }}
+          ></div>
+          <Menu.Item>
+            Ahmer Aftab &nbsp;
+            <Image
+              src={DummyUrl}
+              size="mini"
+              style={{ borderRadius: "15px" }}
+            ></Image>
+          </Menu.Item>
         </Menu.Menu>
       </Menu>
     </Fragment>
-   )
+  );
+};
 
- }
-
-export default PageHeader
+export default PageHeader;

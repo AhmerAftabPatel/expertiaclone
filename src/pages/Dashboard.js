@@ -15,6 +15,7 @@ import {
   Form,
   TextArea
 } from "semantic-ui-react";
+import Base from "../Core/Base";
 import Step3 from "./step3";
 
 /**
@@ -27,7 +28,12 @@ const Dashboard = props => {
   const anotherSegement = (
     <>
       <Segment
-        style={{ minHeight: "200px", margin: "45px", marginTop: "20px",boxShadow : "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}
+        style={{
+          minHeight: "200px",
+          margin: "45px",
+          marginTop: "20px",
+          boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
+        }}
       >
         <Container>
           <Item style={{ display: "flex" }}>
@@ -52,14 +58,14 @@ const Dashboard = props => {
         </Container>
       </Segment>
       <Button
-        onClick={() => step === 1 ? setStep(3): setStep(1) }
+        onClick={() => (step === 1 ? setStep(3) : setStep(1))}
         style={{
-          color: "white", 
+          color: "white",
           position: "absolute",
           bottom: "0px",
           right: "20px",
           width: "150px",
-          margin : "5px",
+          margin: "5px",
           background: "blue",
           borderRadius: "19px"
         }}
@@ -70,7 +76,13 @@ const Dashboard = props => {
   );
   const resumeUpload = (
     <>
-      <Segment style={{ minHeight: "300px", margin: "45px",boxShadow : "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px" }}>
+      <Segment
+        style={{
+          minHeight: "300 px",
+          margin: "45px",
+          boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px"
+        }}
+      >
         <Grid columns={2} relaxed="very">
           <Grid.Column>
             <Container style={{ padding: "15px", textColor: "black" }}>
@@ -204,121 +216,76 @@ const Dashboard = props => {
   };
   return (
     <Fragment>
-      <Sidebar.Pushable as="a" style={{ color: "#000000" }}>
-        <Sidebar
-          as={Menu}
-          animation="overlay"
-          //   icon="labeled"
-          inverted
-          vertical
-          visible
-          width={50}
-        >
-          <Header
-            style={{ padding: "15px", color: "white" }}
-            textAlign="center"
-            as="h2"
-          >
-            Expertia
+      <Base>
+        <Menu inverted secondary>
+          {/* <Segment basic> */}
+
+          <Header style={{ padding: "10px" }} as="h3">
+            <Icon name="pie chart"></Icon> Your Company name
           </Header>
-          <Menu.Item as="a">
-            <Icon name="pie chart" style={{ float: "left" }} />
-            &nbsp; <span style={{ color: "white" }}>Overview</span>
+          <Menu.Item as="a" position="right">
+            <Button
+              style={{
+                borderRadius: "20px",
+                width: "150px",
+                background: "blue",
+                color: "#FFFFFF"
+              }}
+            >
+              Signup
+            </Button>
           </Menu.Item>
-          <Menu.Item as="a">
-            <Icon name="group" style={{ float: "left" }} />
-            &nbsp; Candidates
-          </Menu.Item>
-          <Menu.Item as="a">
-            <Icon name="group" style={{ float: "left" }} />
-            &nbsp; Hiring Team
-          </Menu.Item>
-          <Menu.Item as="a">
-            <Icon name="file" style={{ float: "left" }} />
-            &nbsp; Resume Folder
-          </Menu.Item>
-          <Menu.Item as="a">
-            <Icon name="book" style={{ float: "left" }} />
-            &nbsp; Articles
-          </Menu.Item>
-          <Menu.Item as="a">
-            <Icon name="setting" style={{ float: "left" }} />
-            &nbsp; settings
-          </Menu.Item>
-        </Sidebar>
-
-        <Sidebar.Pusher
-          style={{
-            paddingLeft: "265px",
-            height: "750px",
-            overflow: "auto",
-            overflowX: "hidden"
-          }}
-        >
-          <Menu inverted secondary>
-            {/* <Segment basic> */}
-
-            <Header style={{ padding: "10px" }} as="h3">
-              <Icon name="pie chart"></Icon> Your Company name
+          {/* </Segment> */}
+        </Menu>
+        <Container fluid style={{ padding: "10px" }}>
+          <Segment
+            style={{
+              minHeight: "650px",
+              // padding: "0px",
+              boxShadow: "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px"
+            }}
+          >
+            <Header style={{ padding: "30px", margin: "0px" }}>
+              {/* <hr style ={{zIndex : "-1"}}/> */}
+              <Grid columns="equal">
+                <Grid.Row>
+                  <Grid.Column>
+                    <h3 style={{ textAlign: "center", top: "0" }}>
+                      <Button
+                        circular
+                        onClick={() => setStep(1)}
+                        color={step === 1 ? "facebook" : ""}
+                        style={{ padding: "9px" }}
+                        icon="checkmark"
+                      />
+                      Upload/Create JD
+                    </h3>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <h3 style={{ textAlign: "center" }}>
+                      {" "}
+                      <Icon name="checkmark"></Icon> Source candidates
+                    </h3>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <h3 style={{ textAlign: "center", top: "0" }}>
+                      <Button
+                        onClick={() => setStep(3)}
+                        circular
+                        color={step === 3 ? "facebook" : ""}
+                        style={{ padding: "9px" }}
+                        icon="checkmark"
+                      />
+                      Get results
+                    </h3>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
             </Header>
-            <Menu.Item as="a" position="right">
-              <Button
-                style={{
-                  borderRadius: "20px",
-                  width: "150px",
-                  background: "blue",
-                  color: "#FFFFFF"
-                }}
-              >
-                Signup
-              </Button>
-            </Menu.Item>
-            {/* </Segment> */}
-          </Menu>
-          <Container fluid style={{ padding: "10px" }}>
-            <Segment style={{ minHeight: "650px", padding: "0px",boxShadow : "rgba(17, 12, 46, 0.15) 0px 48px 100px 0px" }}>
-              <Header style={{ padding: "30px", margin: "0px" }}>
-                {/* <hr style ={{zIndex : "-1"}}/> */}
-                <Grid columns="equal">
-                  <Grid.Row>
-                    <Grid.Column>
-                      <h3 style={{ textAlign: "center", top: "0" }}>
-                        <Button
-                          circular
-                          onClick ={() => setStep(1)}
-                          color={step === 1 ? "facebook" : ""}
-                          style={{ padding: "9px" }}
-                          icon="checkmark"
-                        />
-                        Upload/Create JD
-                      </h3>
-                    </Grid.Column>
-                    <Grid.Column>
-                      <h3 style={{ textAlign: "center" }}>
-                        {" "}
-                        <Icon name="checkmark"></Icon> Source candidates
-                      </h3>
-                    </Grid.Column>
-                    <Grid.Column>
-                      <h3 style={{ textAlign: "center", top: "0" }}>
-                        <Button
-                        onClick ={() => setStep(3)}
-                          circular
-                          color={step === 3 ? "facebook" : ""}
-                          style={{ padding: "9px" }}
-                          icon="checkmark"
-                        />
-                        Get results
-                      </h3>
-                    </Grid.Column>
-                  </Grid.Row>
-                </Grid>
-              </Header>
-              {renderSteps()}
-            </Segment>
-          </Container>
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
+            {renderSteps()}
+          </Segment>
+        </Container>
+      </Base>
     </Fragment>
   );
 };
